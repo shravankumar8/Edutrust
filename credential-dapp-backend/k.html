@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lingampally Venkatesh - Portfolio</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #333333;
+        --card-bg: #f0f0f0;
+        --primary-color: #007bff;
+        --shadow-color: rgba(0, 0, 0, 0.1);
+      }
+
+      body.dark-mode {
+        --bg-color: #333333;
+        --text-color: #ffffff;
+        --card-bg: #444444;
+        --primary-color: #66b3ff;
+        --shadow-color: rgba(255, 255, 255, 0.1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        font-family: "Roboto", sans-serif;
+        line-height: 1.6;
+      }
+
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background-color: var(--bg-color);
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 30px;
+        box-shadow: 0 2px 5px var(--shadow-color);
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+      }
+
+      nav ul li {
+        margin-right: 20px;
+      }
+
+      nav ul li a {
+        text-decoration: none;
+        color: var(--text-color);
+        font-weight: bold;
+        transition: color 0.3s ease;
+      }
+
+      nav ul li a:hover {
+        color: var(--primary-color);
+      }
+
+      .theme-toggle {
+        display: flex;
+        align-items: center;
+      }
+
+      .theme-toggle label {
+        margin-left: 10px;
+        cursor: pointer;
+        color: var(--text-color);
+      }
+
+      .section {
+        padding: 60px 20px;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+      }
+
+      .section.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      h2 {
+        font-size: 2em;
+        margin-bottom: 30px;
+        text-align: center;
+        color: var(--primary-color);
+      }
+
+      #hero {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+      }
+
+      .hero-content {
+        display: flex;
+        align-items: center;
+        max-width: 1200px;
+        padding: 0 20px;
+      }
+
+      .avatar {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin-right: 30px;
+        box-shadow: 0 4px 6px var(--shadow-color);
+      }
+
+      .hero-text h1 {
+        font-size: 2.5em;
+        margin-bottom: 10px;
+      }
+
+      .hero-text p {
+        font-size: 1.2em;
+        margin-bottom: 20px;
+        color: var(--text-color);
+      }
+
+      .social-links a {
+        margin: 0 10px;
+        color: var(--text-color);
+        font-size: 1.5em;
+        transition: color 0.3s ease;
+      }
+
+      .social-links a:hover {
+        color: var(--primary-color);
+      }
+
+      #about p,
+      #education p {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .timeline {
+        position: relative;
+        padding: 20px 0;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 20px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background-color: var(--text-color);
+      }
+
+      .timeline-item {
+        position: relative;
+        margin-bottom: 30px;
+      }
+
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: 15px;
+        top: 5px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: var(--primary-color);
+      }
+
+      .timeline-content {
+        margin-left: 40px;
+        background-color: var(--card-bg);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px var(--shadow-color);
+      }
+
+      .timeline-content h3 {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      .timeline-content ul {
+        list-style-type: disc;
+        padding-left: 20px;
+      }
+
+      .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .project-card {
+        background-color: var(--card-bg);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px var(--shadow-color);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px var(--shadow-color);
+      }
+
+      .project-card h3 {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      .tech-stack {
+        margin: 10px 0;
+      }
+
+      .tech-stack span {
+        display: inline-block;
+        background-color: var(--primary-color);
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        margin-right: 5px;
+        margin-bottom: 5px;
+      }
+
+      .project-card a {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .project-card a:hover {
+        text-decoration: underline;
+      }
+
+      .skills-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .skill-category {
+        flex: 1;
+        min-width: 250px;
+      }
+
+      .skill-category h3 {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      .skill-badges span {
+        display: inline-block;
+        background-color: var(--primary-color);
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        transition: transform 0.3s ease;
+      }
+
+      .skill-badges span:hover {
+        transform: scale(1.05);
+      }
+
+      #achievements ul {
+        list-style-type: disc;
+        max-width: 800px;
+        margin: 0 auto;
+        padding-left: 20px;
+      }
+
+      #contact form {
+        display: flex;
+        flex-direction: column;
+        max-width: 500px;
+        margin: 0 auto 30px auto;
+      }
+
+      #contact input,
+      #contact textarea {
+        margin-bottom: 15px;
+        padding: 10px;
+        border: 1px solid var(--text-color);
+        border-radius: 5px;
+        background-color: var(--card-bg);
+        color: var(--text-color);
+      }
+
+      #contact button {
+        padding: 10px;
+        background-color: var(--primary-color);
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      #contact button:hover {
+        background-color: #0056b3;
+      }
+
+      #contact p {
+        text-align: center;
+      }
+
+      #contact a {
+        color: var(--primary-color);
+        text-decoration: none;
+      }
+
+      #contact a:hover {
+        text-decoration: underline;
+      }
+
+      #back-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: none;
+        background-color: var(--primary-color);
+        color: #fff;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      #back-to-top:hover {
+        background-color: #0056b3;
+      }
+
+      @media (max-width: 768px) {
+        .hero-content {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .avatar {
+          margin-bottom: 20px;
+          margin-right: 0;
+        }
+
+        .hero-text h1 {
+          font-size: 2em;
+        }
+
+        nav ul {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        nav ul li {
+          margin-bottom: 10px;
+          margin-right: 0;
+        }
+
+        .theme-toggle {
+          margin-top: 10px;
+        }
+
+        .timeline::before {
+          left: 10px;
+        }
+
+        .timeline-item::before {
+          left: 5px;
+        }
+
+        .timeline-content {
+          margin-left: 30px;
+        }
+
+        .skills-grid {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#achievements">Achievements</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="theme-toggle">
+        <input type="checkbox" id="theme-switch" />
+        <label for="theme-switch">Dark Mode</label>
+      </div>
+    </nav>
+
+    <section id="hero" class="section">
+      <div class="hero-content">
+        <img
+          src="https://ui-avatars.com/api/?name=Lingampally+Venkatesh&size=150"
+          alt="Lingampally Venkatesh"
+          class="avatar"
+        />
+        <div class="hero-text">
+          <h1>Lingampally Venkatesh</h1>
+          <p>Technical Lead | Flutter Developer | Cyber Security Enthusiast</p>
+          <div class="social-links">
+            <a
+              href="https://github.com/username"
+              target="_blank"
+              aria-label="GitHub"
+              ><i class="fab fa-github"></i
+            ></a>
+            <a
+              href="https://linkedin.com/in/lingampallyvenkey"
+              target="_blank"
+              aria-label="LinkedIn"
+              ><i class="fab fa-linkedin"></i
+            ></a>
+            <a href="mailto:lingampally.venkey@gmail.com" aria-label="Email"
+              ><i class="fas fa-envelope"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <h2>About Me</h2>
+      <p>
+        With a passion for building secure and efficient applications, I
+        specialize in Flutter and Node.js, backed by a strong foundation in
+        Cyber Security. My leadership experience has honed my ability to mentor
+        teams, optimize development processes, and deliver high-performance
+        solutions. I thrive on solving complex problems and driving innovation
+        in software development.
+      </p>
+    </section>
+
+    <section id="education" class="section">
+      <h2>Education</h2>
+      <p>
+        DRK College of Engineering - Bachelor of Technology in Computer Science
+        and Cyber Security (Aug 2020 - Jul 2024), Hyderabad, India
+      </p>
+    </section>
+
+    <section id="experience" class="section">
+      <h2>Experience</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3>StepX - Technical Lead (Apr 2024 - Present)</h3>
+            <p>Hyderabad, India</p>
+            <ul>
+              <li>
+                Mentored and led a 5+ member engineering team, improving
+                development speed by 30% using Agile methodologies.
+              </li>
+              <li>
+                Designed and maintained high-performance Flutter applications
+                following clean architecture principles and SOLID patterns.
+              </li>
+              <li>
+                Automated deployment pipelines using Shorebird, reducing release
+                times by 20%.
+              </li>
+              <li>
+                Developed a warehouse and inventory management system with QR
+                and OCR scanning, utilizing Flutter, Firebase, and AWS services.
+              </li>
+              <li>
+                Maintained the Pharma Vision App, enhancing OCR capabilities and
+                publishing updates to the Google Play Store.
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3>Alemeno - Software Developer (Sep 2023 - Mar 2024)</h3>
+            <p>Remote</p>
+            <ul>
+              <li>
+                Developed complex Flutter applications implementing BLoC pattern
+                and clean architecture principles.
+              </li>
+              <li>
+                Created automated web scraping solutions using Python and
+                Selenium, processing 1000+ data points daily.
+              </li>
+              <li>
+                Implemented Django backend services with RESTful APIs and
+                integrated with Flutter frontend.
+              </li>
+              <li>
+                Optimized application performance, resulting in 30% improvement
+                in load times and user experience.
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3>Decrypton Pvt Ltd - Flutter Developer (Nov 2022 - Sep 2023)</h3>
+            <p>Remote</p>
+            <ul>
+              <li>
+                Resolved 100+ critical bugs and implemented 10+ new features in
+                Flutter-based Android applications.
+              </li>
+              <li>
+                Optimized backend API integration, resulting in 20% reduction in
+                response time.
+              </li>
+              <li>
+                Developed cross-platform applications ensuring consistent
+                functionality across Android, iOS, and web.
+              </li>
+              <li>
+                Implemented state management solutions using Provider and BLoC
+                patterns for complex application flows.
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3>
+              OSOS Pvt Ltd - Software Developer Intern (Feb 2022 - May 2022)
+            </h3>
+            <p>Hyderabad, India</p>
+            <ul>
+              <li>
+                Improved Android app performance by 15% through code
+                optimization and memory management.
+              </li>
+              <li>
+                Implemented dark mode feature, improving user experience and
+                accessibility compliance.
+              </li>
+              <li>
+                Conducted comprehensive testing, identifying and resolving 50+
+                critical issues before release.
+              </li>
+              <li>
+                Developed reusable UI components, reducing development time for
+                new features by 25%.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <h2>Projects</h2>
+      <div class="project-grid">
+        <div class="project-card">
+          <h3>Full Stack News Application</h3>
+          <p>
+            Developed a full-stack news application with secure user
+            authentication using JWT & Firebase Auth. Implemented state
+            management with BLoC for efficient UI updates and optimized API
+            calls using lazy loading and pagination.
+          </p>
+          <div class="tech-stack">
+            <span>Node.js</span>
+            <span>Express</span>
+            <span>Flutter</span>
+            <span>Firebase</span>
+            <span>BLoC</span>
+            <span>Auto Router</span>
+          </div>
+          <a href="https://github.com/username/news-app" target="_blank"
+            >View on GitHub</a
+          >
+        </div>
+        <div class="project-card">
+          <h3>RansomAware Decryptor</h3>
+          <p>
+            Engineered a ransomware decryption tool leveraging AES and RSA
+            encryption for enhanced security. Implemented automated malware
+            detection using SHA-256 hashing and deployed RESTful APIs with
+            Django and JWT authentication.
+          </p>
+          <div class="tech-stack">
+            <span>Python</span>
+            <span>Flet</span>
+            <span>Django API</span>
+            <span>AES Encryption</span>
+            <span>RSA Encryption</span>
+            <span>Mega Cloud</span>
+          </div>
+          <a href="https://github.com/username/ransomaware" target="_blank"
+            >View on GitHub</a
+          >
+        </div>
+        <div class="project-card">
+          <h3>OpenAI Mobile Application</h3>
+          <p>
+            Developed an AI-powered chatbot using GPT-4 API with DALL-E 2 image
+            generation support. Implemented GetX for reactive state management
+            and secured user authentication using OAuth 2.0 and Firebase Auth.
+          </p>
+          <div class="tech-stack">
+            <span>Flutter</span>
+            <span>GPT-4 API</span>
+            <span>Hive DB</span>
+            <span>GetX</span>
+            <span>OAuth2</span>
+            <span>WebSockets</span>
+          </div>
+          <a href="https://github.com/username/openai-app" target="_blank"
+            >View on GitHub</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <h2>Technical Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h3>Languages</h3>
+          <div class="skill-badges">
+            <span>Python</span>
+            <span>Dart</span>
+            <span>JavaScript</span>
+            <span>Java</span>
+            <span>SQL</span>
+            <span>Kotlin</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3>Frameworks</h3>
+          <div class="skill-badges">
+            <span>Flutter</span>
+            <span>Node.js</span>
+            <span>Django</span>
+            <span>Express</span>
+            <span>React</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3>State Management</h3>
+          <div class="skill-badges">
+            <span>BLoC</span>
+            <span>Riverpod</span>
+            <span>GetX</span>
+            <span>Provider</span>
+            <span>Cubit</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3>Databases</h3>
+          <div class="skill-badges">
+            <span>Firebase</span>
+            <span>MongoDB</span>
+            <span>PostgreSQL</span>
+            <span>SQLite</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="achievements" class="section">
+      <h2>Achievements</h2>
+      <ul>
+        <li>
+          Secured Top 25 position in Build with Celo Hackathon, demonstrating
+          innovative technical solutions.
+        </li>
+        <li>
+          Successfully completed and delivered first freelance application
+          project.
+        </li>
+        <li>
+          Identified and reported critical security vulnerability on TS RTC
+          website.
+        </li>
+      </ul>
+    </section>
+
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <form
+        id="contact-form"
+        action="https://formspree.io/your@email.com"
+        method="POST"
+      >
+        <input
+          type="text"
+          name="name"
+          placeholder="Your Name"
+          required
+          aria-label="Name"
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Your Email"
+          required
+          aria-label="Email"
+        />
+        <textarea
+          name="message"
+          placeholder="Your Message"
+          required
+          aria-label="Message"
+        ></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+      <p>
+        Or reach me directly at
+        <a href="mailto:lingampally.venkey@gmail.com"
+          >lingampally.venkey@gmail.com</a
+        >
+      </p>
+      <p>
+        Connect on
+        <a href="https://linkedin.com/in/lingampallyvenkey" target="_blank"
+          >LinkedIn</a
+        >
+      </p>
+    </section>
+
+    <button
+      id="back-to-top"
+      onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+    >
+      Back to Top
+    </button>
+
+    <script>
+      // Theme Toggle
+      const themeSwitch = document.getElementById("theme-switch");
+      themeSwitch.addEventListener("change", () => {
+        document.body.classList.toggle("dark-mode");
+      });
+
+      // Intersection Observer for Animations
+      const sections = document.querySelectorAll(".section");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.3 }
+      );
+      sections.forEach((section) => {
+        observer.observe(section);
+      });
+
+      // Back to Top Button
+      window.addEventListener("scroll", () => {
+        const backToTop = document.getElementById("back-to-top");
+        if (window.scrollY > 300) {
+          backToTop.style.display = "block";
+        } else {
+          backToTop.style.display = "none";
+        }
+      });
+    </script>
+  </body>
+</html>
